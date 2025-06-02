@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="conteiner">
+        {%block content%}
+        <header>
+            <div class="logo">
+                <img src="static\img\logoalmacanina.png" alt="" class="logo">
+                <h1>Inicio</h1>
+                <h2><a href="{% url 'login' %}">Iniciar sesion</a></h2>
+            </div>
+
+        </header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{%url 'registro'%}">registrarse</a>
+                    <h2><a href="/crud/productos" class="link">Todos los producto</a></h2>
+                    
+                </li>
+            </ul>
+        </nav>
+        <h1>hola</h1>
+        {%endblock%}
+    </div>
+</body>
+</html>
