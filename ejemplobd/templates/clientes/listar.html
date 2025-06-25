@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de Clientes</h1>
+<a href="{% url 'registrarCliente' %}">Registrar Cliente</a>
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Teléfono</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+    </tr>
+    {% for c in clientes %}
+    <tr>
+        <td>{{ c.nombre }}</td>
+        <td>{{ c.correo }}</td>
+        <td>{{ c.telefono }}</td>
+        <td><a href="{% url 'editarCliente' c.id %}">Editar</a></td>
+        <td><a href="{% url 'eliminarCliente' c.id %}">Eliminar</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
