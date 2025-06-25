@@ -8,3 +8,12 @@ class Cliente(models.Model):
 
     def __str__(self):
         return self.nombre
+
+class Empleado(models.Model):
+    nombre = models.CharField(max_length=100)
+    correo = models.EmailField(unique=True)
+    puesto = models.CharField(max_length=50)
+    telefono = models.CharField(max_length=20, blank=True)
+
+    def __str__(self):
+        return self.nombre

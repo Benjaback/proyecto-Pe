@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from ejemplo.models import *
-from .forms import ProductoForm, ClienteForm
-from .models import Cliente
+from .forms import ProductoForm, ClienteForm, EmpleadoForm
+from .models import Cliente, Empleado
 # Create your views here.
 
 def listar_productos(request):
@@ -86,3 +86,36 @@ def eliminar_cliente(request, pk):
         cliente.delete()
         return redirect('listarClientes')
     return render(request, 'clientes/eliminar.html', {'cliente': cliente})
+
+#Empleado
+def listar_empleados(request):
+    empleados = Empleado.objects.all()
+    return render(request, 'empleados/listar.html', {'empleados': empleados})
+
+def registrar_empleado(request):
+    if request.method == 'POST':
+        form = EmpleadoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listarEmpleados')
+    else:
+        form = EmpleadoForm()
+    return render(request, 'empleados/form.html', {'form': form})
+
+def editar_empleado(request, pk):
+    empleado = get_object_or_404(Empleado, pk=pk)
+    if request.method == 'POST':
+        form = EmpleadoForm(request.POST, instance=empleado)
+        if form.is_valid():
+            form.save()
+            return redirect('listarEmpleados')
+    else:
+        form = EmpleadoForm(instance=empleado)
+    return render(request, 'empleados/form.html', {'form': form})
+
+def eliminar_empleado(request, pk):
+    empleado = get_object_or_404(Empleado, pk=pk)
+    if request.method == 'POST':
+        empleado.delete()
+        return redirect('listarEmpleados')
+    return render(request, 'empleados/eliminar.html', {'empleado': empleado})

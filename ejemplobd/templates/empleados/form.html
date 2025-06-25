@@ -6,12 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Eliminar Empleado</h1>
-    <p>¿Estás seguro que deseas eliminar a {{ empleado.nombre }}?</p>
+    
+    <h1>Registrar/Editar Empleado</h1>
     <form method="post">
         {% csrf_token %}
-        <button type="submit">Sí, eliminar</button>
-        <a href="{% url 'listarEmpleados' %}">Cancelar</a>
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
     </form>
+    <a href="{% url 'listarEmpleados' %}">Volver</a>
 </body>
 </html>

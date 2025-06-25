@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de Empleados</h1>
+<a href="{% url 'registrarEmpleado' %}">Registrar Empleado</a>
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Puesto</th>
+        <th>Teléfono</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+    </tr>
+    {% for e in empleados %}
+    <tr>
+        <td>{{ e.nombre }}</td>
+        <td>{{ e.correo }}</td>
+        <td>{{ e.puesto }}</td>
+        <td>{{ e.telefono }}</td>
+        <td><a href="{% url 'editarEmpleado' e.id %}">Editar</a></td>
+        <td><a href="{% url 'eliminarEmpleado' e.id %}">Eliminar</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
